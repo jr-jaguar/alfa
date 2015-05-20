@@ -1,0 +1,4 @@
+name = Second task module
+description = "Overriding form in module Ftask and put it in block"
+package = JR
+core = 7.x

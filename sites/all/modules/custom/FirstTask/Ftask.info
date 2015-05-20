@@ -1,0 +1,4 @@
+name = First task module
+description = "Create page with 2 text fields"
+package = JR
+core = 7.x
