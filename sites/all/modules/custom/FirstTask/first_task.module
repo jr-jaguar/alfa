@@ -1,0 +1,40 @@
+<?php
+/**
+ * @file
+ */
+
+function first_task_menu() {
+    $items = array();
+    $items['first_task'] = array(
+        'title' => 'First task page',
+        'page callback' => 'drupal_get_form',
+        'page arguments' => array('first_task_form'),
+        'type' => MENU_NORMAL_ITEM,
+        'access callback' => TRUE,
+    );
+    return $items;
+}
+
+function first_task_form($form, $form_state) {
+    $form['fField'] = array(
+        '#type' => 'textfield',
+        '#title' => t('First text'),
+    );
+
+    $form['sField'] = array(
+        '#type' => 'textfield',
+        '#title' => t('Second text'),
+    );
+
+    $form['submit'] = array(
+        '#type' => 'submit',
+        '#value' => t('First task'),
+    );
+    return $form;
+}
+
+function first_task_form_submit($form, &$form_state) {
+    $st1 = $form_state['values']['fField'] . ' ' . $form_state['values']['sField'];
+
+   drupal_set_message(t('@values', array('@values' => $st1)));
+}

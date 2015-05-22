@@ -1,0 +1,50 @@
+<?php
+/**
+ * @file
+ */
+
+function second_task_block_info() {
+    $blocks = array();
+    $blocks['custom_form_block'] = array(
+        'info' => t('Second task block'),
+        'status' => TRUE,
+        'region' => 'sidebar_second',
+        'visibility' => BLOCK_VISIBILITY_NOTLISTED,
+        'pages' => 'first_task',
+    );
+    return $blocks;
+}
+
+function second_task_block_view($delta = '') {
+    if ($delta == 'custom_form_block') {
+        $block['subject'] = t('Second task');
+        $block['content'] = drupal_get_form('first_task_form');
+    }
+    return $block;
+}
+
+function second_task_form_alter(&$form, &$form_state, $form_id) {
+    //dpm($form_id);
+    //print $form_id;
+    if ($form_id == 'first_task_form') {
+    $form['fField']['#size'] = 30;
+    $form['sField']['#size'] = 30;
+    $form['tField'] = array(
+        '#type' => 'textfield',
+        '#title' => t('Thed text'),
+        '#size' => 30,
+    );
+    $form['submit2'] = array(
+         '#type' => 'submit',
+         '#value' => t('Second task'),
+         '#submit' => array('second_task_form_submit'),
+        );
+
+    }
+    return $form;
+}
+function second_task_form_submit($form, &$form_state) {
+    $st2 = $form_state['values']['tField'];
+
+    drupal_set_message(t('@values', array('@values' => $st2)));
+}
