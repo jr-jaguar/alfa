@@ -1,0 +1,40 @@
+<?php
+
+function third_task_menu() {
+    $items = array();
+    $items['third_task'] = array(
+        'title' => 'Third task page',
+        'page callback' => 'third_task_callback',
+        'type' => MENU_NORMAL_ITEM,
+        'access callback' => TRUE,
+    );
+return $items;
+}
+
+/**
+ * Implements hook_theme().
+ */
+function third_task_theme($existing, $type, $theme, $path) {
+    return array(
+        'third_task_template' => array(
+            'variables' => array(
+            'f_word' => NULL,
+            's_word' => NULL,
+        ),
+       //'template' => 'third_task_template',
+    ),
+    );
+}
+
+function third_task_callback(){
+    return theme('third_task_template', array('f_word' => 'Hello', 's_word' => 'World!'));
+}
+
+function theme_third_task_template($variables){
+    $output = '<div class="third_task_wrapper">';
+    $output .=  '<div class ="body">';
+    $output .=      $variables['f_word'] . ', ' . $variables['s_word'];
+    $output .=  '</div>';
+    $output .= '</div>';
+    return $output;
+}

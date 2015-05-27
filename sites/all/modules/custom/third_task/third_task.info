@@ -1,0 +1,4 @@
+name = Third task module
+description = "Create page with some text through template"
+package = JR
+core = 7.x
