@@ -1,0 +1,4 @@
+name = Second round task
+description = "xz"
+package = JR
+core = 7.x

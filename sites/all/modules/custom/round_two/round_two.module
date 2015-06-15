@@ -1,0 +1,59 @@
+<?php
+
+function round_two_menu() {
+    $items = array();
+    $items['round_two'] = array(
+        'title' => 'round two',
+        'page callback'    => 'drupal_get_form',
+        'page arguments'   => array('select_form'),
+        'access arguments' => array('access content'),
+        'type' => MENU_NORMAL_ITEM,
+        'access callback' => TRUE,
+    );
+    return $items;
+}
+
+function round_two_theme() {
+    return array(
+            'select_form'  => array(
+            'render element' => 'form',
+        ),
+        //'template' => 'round_two_template',
+    );
+}
+
+
+function select_form($form, &$form_state) {
+    $options = array(
+        'first' => t('First'),
+        'second' => t('Second'),
+        'third' => t('Third'),
+    );
+    $form['choice'] = array(
+        '#type' => 'select',
+        '#options' => $options,
+        '#title' => t('Make your сhoose'),
+    );
+    $form['submit'] = array(
+        '#type' => 'submit',
+        '#value' => t('Go'),
+    );
+    return $form;
+}
+
+function select_form_submit($form, &$form_state) {
+    drupal_set_message(t('You chose %input', array('%input' => $form_state['values']['choice'])));
+}
+
+function theme_select_form($variables) {
+    $form = $variables['form'];
+    $title = $form['choice']['#title'];
+    $form['choice']['#title'] = '';
+    $output = '<strong>' . $title . '</strong>';
+    $form['choice']['#prefix'] = '<div class="container-inline">';
+    $form['submit']['#suffix'] = '</div>';
+    $output .= drupal_render_children($form);
+    return $output;
+}
+
+
