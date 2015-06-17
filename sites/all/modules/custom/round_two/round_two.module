@@ -12,27 +12,18 @@ function round_two_menu() {
   return $items;
 }
 
-//function round_two_theme() {
-//  return array(
-//    'round_two_select_form' => array(
-//      'render element' => 'form',
-//    ),
-//    'template' => 'round_two_select_form',
-//  );
-//}
-
-function round_two_theme() {
-  $hooks = array();
-  $hooks['round_two_select_form'] = array(
-    'render element' => 'form',
-    'template' => 'round_two_select_form'
+function round_two_theme($existing, $type, $theme, $path) {
+  return array(
+    'round_two_select_form' => array(
+      'render element' => 'form',
+    ),
   );
-  return $hooks;
 }
+
 function round_two_select_form($form, &$form_state) {
   $options = array(
-    'first' => t('First'),
-    'second' => t('Second'),
+    'TPL' => t('First'),
+    'function' => t('Second'),
     'third' => t('Third'),
   );
   $form['choice'] = array(
@@ -51,15 +42,15 @@ function round_two_select_form_submit($form, &$form_state) {
   drupal_set_message(t('You chose %input', array('%input' => $form_state['values']['choice'])));
 }
 
-//function theme_round_two_select_form($variables) {
-//  $form = $variables['form'];
-//  $title = $form['choice']['#title'];
-//  $form['choice']['#title'] = '';
-//  $output = '<strong>' . $title . '</strong>';
-//  $form['choice']['#prefix'] = '<div class="container-inline">';
-//  $form['submit']['#suffix'] = '</div>';
-//  $output .= drupal_render_children($form);
-//  return $output;
-//}
 
+function theme_round_two_select_form($variables) {
+  $form = $variables['form'];
+  $title = $form['choice']['#title'];
+  $form['choice']['#title'] = '';
+  $output = '<strong>' . $title . '</strong>';
+  $form['choice']['#prefix'] = '<div class="container-inline">';
+  $form['submit']['#suffix'] = '</div>';
+  $output .= drupal_render_children($form);
+  return $output;
+}
 
