@@ -1,0 +1,6 @@
+name = Fourth task module
+description = "Create Ctools plugin, show form in panels"
+package = JR
+core = 7.x
+
+dependencies[] = ctools

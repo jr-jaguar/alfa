@@ -1,0 +1,37 @@
+<?php
+/**
+ * @file
+ */
+
+/**
+ * Implements hook_ctools_plugin_directory().
+ */
+function fourth_task_ctools_plugin_directory($owner, $plugin_type) {
+  if ($owner == 'ctools' && $plugin_type == 'content_types') {
+    return 'plugins/' . $plugin_type;
+  }
+}
+
+function fourth_task_form($form, $form_state) {
+  $form['f_field'] = array(
+    '#type' => 'textfield',
+    '#title' => t('First text'),
+  );
+
+  $form['s_field'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Second text'),
+  );
+
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Fourth task'),
+  );
+  return $form;
+}
+
+function fourth_task_form_submit($form, &$form_state) {
+  $st1 = $form_state['values']['f_field'] . ' ' . $form_state['values']['s_field'];
+
+  drupal_set_message(t('@values', array('@values' => $st1)));
+}
