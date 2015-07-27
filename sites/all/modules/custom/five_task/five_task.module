@@ -1,0 +1,12 @@
+<?php
+/**
+ * @file
+ */
+
+/**
+ * Implements of hook_views_api().
+ */
+
+function five_task_views_api() {
+  return array('api' => 3);
+}

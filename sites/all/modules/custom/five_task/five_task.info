@@ -1,0 +1,6 @@
+name = five task module
+description = "views filter"
+package = JR
+core = 7.x
+
+files[] = five_task_handler_filter_mycustomfilter.inc
