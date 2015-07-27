@@ -3,4 +3,4 @@ description = "views filter"
 package = JR
 core = 7.x
 
-files[] = five_task_handler_filter_mycustomfilter.inc
+files[] = five_task_handler_filter_my_custom_filter.inc
